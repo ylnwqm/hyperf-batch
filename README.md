@@ -4,7 +4,7 @@ Insert and update batch (bulk) in hyperf
 # From
 modify from mavinoo/laravel-batch,a coroutine-based
 # Install
-`composer require mavinoo/laravel-batch`
+`composer require ylnwqm/hyperf-batch`
 
 # Example Update 1
 
@@ -165,4 +165,4 @@ $result = batch()->insert($userInstance, $columns, $values, $batchSize);
 # Tests
 If you don't have phpunit installed on your project, first run `composer require phpunit/phpunit`
 
-In the root of your laravel app, run `./vendor/bin/phpunit ./vendor/mavinoo/laravel-batch/tests`
+In the root of your hyperf app, run `./vendor/bin/phpunit ./vendor/ylnwqm/hyperf-batch/tests`
