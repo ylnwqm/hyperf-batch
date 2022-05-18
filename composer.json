@@ -10,7 +10,10 @@
     "autoload": {
         "psr-4": {
             "Ylnwqm\\HyperfBatch\\": "src/"
-        }
+        },
+        "files": [
+            "src/Common/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -50,7 +50,7 @@ class BatchAction implements BatchInterface
      * @param string $index
      * @param bool $raw
      * @return bool|int
-     * 
+     *
      */
     public function update(Model $table, array $values, string $index = null, bool $raw = false)
     {
@@ -402,10 +402,10 @@ class Batch
         return call_user_func_array([(new BatchAction),$method],$parameters);
     }
 
-    public static function __callStatic($method, $params){
+    public static function __callStatic($method, $parameters){
         if (is_null(self::$instance)) {
             self::$instance = new BatchAction();
-            call_user_func_array([self::$instance, $method], $params);
+            call_user_func_array([self::$instance, $method], $parameters);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 if (!function_exists('batch')) {
     /**
-     * Batch helper to get Mavino\Batch\Batch instance.
+     * Batch helper to get use Ylnwqm\HyperfBatch\Batch instance.
      *
      * @return mixed
      */
