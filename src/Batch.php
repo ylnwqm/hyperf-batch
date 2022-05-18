@@ -7,7 +7,7 @@ use Hyperf\DbConnection\Model\Model;
 use Hyperf\DbConnection\Db;
 use Carbon\Carbon;
 
-class Batch implements BatchInterface
+class BatchAction implements BatchInterface
 {
     /**
      * @var Db
@@ -17,17 +17,6 @@ class Batch implements BatchInterface
     public function __construct()
     {
         $this->db = make(Db::class);
-    }
-
-    /**
-     * Handle dynamic static method calls into the method.
-     *
-     * @param string $method
-     * @param array $parameters
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        return (new static())->{$method}(...$parameters);
     }
 
     /**
@@ -156,7 +145,7 @@ class Batch implements BatchInterface
      * @param string|null $index2
      * @param bool $raw
      * @return bool|int
-     * 
+     *
      *
      * Example
      * $table = 'users';
@@ -404,5 +393,19 @@ class Batch implements BatchInterface
         }
 
         return $model->getConnection()->getName();
+    }
+}
+class Batch
+{
+    private static $instance = null;
+    public function __call($method, $parameters){
+        return call_user_func_array([(new BatchAction),$method],$parameters);
+    }
+
+    public static function __callStatic($method, $params){
+        if (is_null(self::$instance)) {
+            self::$instance = new BatchAction();
+            call_user_func_array([self::$instance, $method], $params);
+        }
     }
 }
