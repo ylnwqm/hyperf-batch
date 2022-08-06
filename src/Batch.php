@@ -402,10 +402,13 @@ class Batch
         return call_user_func_array([(new BatchAction),$method],$parameters);
     }
 
-    public static function __callStatic($method, $parameters){
+    public static function __callStatic($method, $parameters)
+    {
         if (is_null(self::$instance)) {
             self::$instance = new BatchAction();
             call_user_func_array([self::$instance, $method], $parameters);
+        } else {
+            return call_user_func_array([(new BatchAction), $method], $parameters);
         }
     }
 }
